@@ -1,11 +1,15 @@
 import { getKey } from './utils.js'
 let effects = {}
 
-export const useEffect = (effect, deps) => {
+export const useEffect = async (effect, deps) => {
   const key = getKey()
 
   if(!effects[key]?.deps || depsHaveChanged(effects[key].deps, deps)) {
-    effects[key] = { cleaner: effect(), deps }
+    const cleaner = await effect()
+    effects[key] = { 
+      cleaner, 
+      deps 
+    }
   }
 }
 
@@ -14,9 +18,11 @@ window.debugEffect = () => {
 }
 
 export const clearEffects = () => {
-  Object.keys(effects).forEach(
-    key => typeof effects[key].cleaner === 'function' && effects[key].cleaner()
-  )
+  Object.keys(effects).forEach(async (key) => {
+    if(typeof effects[key].cleaner === 'function'){
+      await effects[key].cleaner()
+    } 
+  })
   effects = {}
 }
 
@@ -27,5 +33,5 @@ function depsHaveChanged(oldDeps, newDeps) {
   if (oldDeps.length !== newDeps.length) {
       return true
   }
-  return oldDeps.some((value, index) => value !== newDeps[index])
+  return oldDeps.some((value, index) => !depsHaveChanged(value, newDeps[index])) 
 }

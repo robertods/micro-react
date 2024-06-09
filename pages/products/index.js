@@ -1,28 +1,26 @@
 import { html, useState, useEffect } from '../../u-react/index.js'
 import Link from '../../components/Link.js'
+import ProductList from '../../components/ProductList.js'
+import * as serviceProducts from '../../services/products.js'
 
-const products = () => {
+const Products = () => {
   
   console.log("render productos")
-  const [count, setCount] = useState(100)
+  const [products, setProducts] = useState([])
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log("effect executed!")
-    return () => console.log("effect cleaned!")
-  }, [count])
+    const products = await serviceProducts.get()
+    setProducts(products)
 
-  useEffect(() => {
-    console.log("effect executed 2!")
-    return () => console.log("effect cleaned 2!")
-  }, [])
+    return () => console.log("effect cleaned!")
+  }, [products])
 
   return html`
     <h1>Productos</h1>
-    <button @click=${e=>setCount(count - 1)}>-</button>
-    <div>${count}</div>
-    <button @click=${e=>setCount(count + 1)}>+</button>
+    ${ProductList({products})}
     ${Link({href:'/', text:'Home'})}
   `
 }
 
-export default products
+export default Products

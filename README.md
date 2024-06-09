@@ -6,7 +6,7 @@ No requiere un entorno node.js, ya que es una biblioteca lista para usar directa
 
 ## Características
 
-- **Router sin configuración**: Soporte para parámetros en las rutas sin necesidad de configuración adicional. La estructura de la carpeta */pages* define el enrutamiento.
+- **Router sin configuración**: Soporte para parámetros en las rutas sin necesidad de configuración adicional. La estructura de la carpeta */pages* define el enrutamiento. Soporte de router hash (por defecto) y popstate (requiere servidor configurado para spa).
 - **Hooks**:
   - `useState`
   - `useReducer`
