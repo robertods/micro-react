@@ -1,4 +1,5 @@
-import { html, navigate } from '../u-react/index.js';
+import { globalContext } from '../context/GlobalContext.js';
+import { html, navigate, useContext } from '../u-react/index.js';
 
 const Link = ({ href, text }) => {
   const handleClick = (e) => {
@@ -6,10 +7,13 @@ const Link = ({ href, text }) => {
     navigate(href);
   }
 
+  const { value1, setValue1 } = useContext(globalContext)
+
   return html`
     <a href="${href}" @click=${handleClick}>
       ${text}
     </a>
+    <button @click=${e => setValue1(value1 + 2)}>+</button>
   `
 }
 

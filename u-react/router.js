@@ -1,5 +1,5 @@
 import { clearStates } from "./useState.js"
-import { cleareffects } from "./useEffect.js"
+import { clearEffects } from "./useEffect.js"
 import { getPathname } from "./utils.js"
 let modulePath = null
 let preModulePath = null
@@ -22,7 +22,7 @@ const router = async () => {
   if(modulePath !== preModulePath) {
     preModulePath = modulePath
     clearStates()
-    cleareffects()
+    clearEffects()
   }
   return module.default(...params)
 }

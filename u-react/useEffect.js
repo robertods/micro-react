@@ -1,25 +1,23 @@
 import { getKey } from './utils.js'
-let cleanerEffects = {}
-let oldDeps = {}
+let effects = {}
 
 export const useEffect = (effect, deps) => {
   const key = getKey()
 
-  if(!oldDeps[key] || depsHaveChanged(oldDeps[key], deps)) {
-    cleanerEffects[key] = effect()
-    oldDeps[key] = deps
+  if(!effects[key]?.deps || depsHaveChanged(effects[key].deps, deps)) {
+    effects[key] = { cleaner: effect(), deps }
   }
 }
 
 window.debugEffect = () => {
-  console.log(cleanerEffects)
-  console.log(oldDeps)
+  console.log(effects)
 }
 
-export const cleareffects = () => {
-  Object.values(cleanerEffects).forEach(f => f())
-  cleanerEffects = {}
-  oldDeps = {}
+export const clearEffects = () => {
+  Object.keys(effects).forEach(
+    key => typeof effects[key].cleaner === 'function' && effects[key].cleaner()
+  )
+  effects = {}
 }
 
 export default useEffect
