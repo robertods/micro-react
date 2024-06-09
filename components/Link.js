@@ -1,19 +1,16 @@
-import { html, navigate, useState } from '../u-react/index.js';
+import { html, navigate } from '../u-react/index.js';
 
 const Link = ({ href, text }) => {
   const handleClick = (e) => {
     e.preventDefault();
     navigate(href);
-  };
-
-  const [points, setPoints]= useState(2)
+  }
 
   return html`
     <a href="${href}" @click=${handleClick}>
-      ${text} (${points})
+      ${text}
     </a>
-    <button @click=${e => setPoints(points + 1)}>+</button>
-  `;
-};
+  `
+}
 
-export default Link;
+export default Link

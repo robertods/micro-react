@@ -1,4 +1,4 @@
-import { defaultView } from '../framework.config.js'
+import { defaultView } from '../u-react.config.js'
 
 function getCallerInfo() {
   const error = new Error()
