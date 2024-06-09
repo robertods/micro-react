@@ -1,1 +1,1 @@
-# micro-react
+# μReact
