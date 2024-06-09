@@ -6,7 +6,6 @@ let reducers = {}
 const useReducer = (reducer, initialState) => {
 
   const key = getKey()
-  let getState
 
   if(!reducers[key]){
     const [getState, setState] = useState(initialState, true)    
@@ -20,6 +19,10 @@ const useReducer = (reducer, initialState) => {
   }
   
   return [reducers[key].getState(), reducers[key].dispatch]
+}
+
+export const clearReducers = () => {
+  reducers = {}
 }
 
 window.debugReducer = () => {

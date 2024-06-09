@@ -1,8 +1,9 @@
 import { getKey } from './utils.js'
+import { refresh } from './router.js'
+
 let contexts = {}
 
 const createContext = (initialValue) => {
-
   const key = getKey()
   contexts[key] = { 
     value: initialValue, 
@@ -10,18 +11,15 @@ const createContext = (initialValue) => {
     Provider({value, children}){
       if(!compareObjects(value, contexts[key].value)){
         contexts[key].value = value
-        window.dispatchEvent(new PopStateEvent('popstate'))
+        refresh()
       }
       return children
     }
   }
-
   return contexts[key]
 }
 
 const useContext = (context) => {
-  //context.subscribers.add(getCaller())
-  //console.log("subscribers => ", context.subscribers)
   return context.value
 }
 

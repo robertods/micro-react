@@ -1,4 +1,6 @@
 import { getKey } from './utils.js'
+import { refresh } from './router.js'
+
 let states = {}
 
 export const useState = (initialValue, returnGet) => {
@@ -9,7 +11,7 @@ export const useState = (initialValue, returnGet) => {
 
   const setState = (newState) => {
     states[key] = newState
-    window.dispatchEvent(new PopStateEvent('popstate'))
+    refresh()
   }
 
   if(returnGet){

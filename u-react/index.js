@@ -4,6 +4,7 @@ import useState from './useState.js'
 import useEffect from './useEffect.js'
 import { useContext, createContext } from './useContext.js'
 import useReducer from './useReducer.js'
+import { routerHash } from '../u-react.config.js'
 
 const createRoot = (element, RootComponent) => {
   const renderApp = async () => {
@@ -11,7 +12,8 @@ const createRoot = (element, RootComponent) => {
     const app = await RootComponent(content)
     render(app, element)
   }
-  window.addEventListener('popstate', renderApp)
+  const eventName = routerHash ? 'hashchange' : 'popstate'
+  window.addEventListener(eventName, renderApp)
   renderApp()
 }
 
