@@ -1,4 +1,4 @@
-import { html, createRoot } from './_framework/u-react.js'
+import { html, createRoot } from './u-react/index.js'
 
 const Provider = (children) => {
   return html`<section>${children}</section>`

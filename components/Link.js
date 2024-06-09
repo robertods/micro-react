@@ -1,4 +1,4 @@
-import { html, navigate, useState } from '../_framework/u-react.js';
+import { html, navigate, useState } from '../u-react/index.js';
 
 const Link = ({ href, text }) => {
   const handleClick = (e) => {

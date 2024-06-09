@@ -1,4 +1,4 @@
-import { html } from '../../_framework/u-react.js'
+import { html } from '../../u-react/index.js'
 import Link from '../../components/Link.js'
 
 const notFound = () => {

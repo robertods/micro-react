@@ -1,4 +1,4 @@
-import { html, useState, useEffect } from '../../_framework/u-react.js'
+import { html, useState, useEffect } from '../../u-react/index.js'
 import Link from '../../components/Link.js'
 
 const products = () => {
