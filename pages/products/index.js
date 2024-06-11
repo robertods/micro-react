@@ -1,23 +1,16 @@
-import { html, useState, useEffect } from '../../u-react/index.js'
+import { html, useContext, navigate } from '../../u-react/index.js'
 import Link from '../../components/Link.js'
 import ProductList from '../../components/ProductList.js'
-import * as serviceProducts from '../../services/products.js'
+import { productsContext } from '../../contexts/ProductsContext.js'
 
 const Products = () => {
   
   console.log("render productos")
-  const [products, setProducts] = useState([])
-
-  useEffect(async () => {
-    console.log("effect executed!")
-    const products = await serviceProducts.get()
-    setProducts(products)
-
-    return () => console.log("effect cleaned!")
-  }, [products])
+  const {products} = useContext(productsContext)
 
   return html`
     <h1>Productos</h1>
+    <button @click=${e => navigate('/products/new')}>New</button>
     ${ProductList({products})}
     ${Link({href:'/', text:'Home'})}
   `

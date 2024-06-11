@@ -1,4 +1,4 @@
-import { createContext, useState } from "../u-react/index.js";
+import { createContext, useState } from "../u-react/index.js"
 
 const globalContext = createContext(90)
 

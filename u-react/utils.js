@@ -2,7 +2,7 @@ function getCallerInfo() {
   const error = new Error()
   const stackLines = error.stack.split('\n')
   let index = stackLines.findIndex(element => element.includes('/pages/'))
-  index === -1 ? (index = stackLines.findIndex(element => element.includes('/context/'))) : index
+  index === -1 ? (index = stackLines.findIndex(element => element.includes('/contexts/'))) : index
   const callerStackLine = stackLines[index]
   const { origin } = window.location
   const match = callerStackLine.match(/at\s+(.*)\s+\((.*):(\d+):(\d+)\)/) || callerStackLine.match(/at\s+(.*):(\d+):(\d+)/)

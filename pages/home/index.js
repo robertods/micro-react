@@ -1,7 +1,7 @@
 import { html, useReducer, useState } from '../../u-react/index.js'
 import Link from '../../components/Link.js'
 import { useContext } from '../../u-react/useContext.js'
-import { globalContext } from '../../context/GlobalContext.js'
+import { globalContext } from '../../contexts/GlobalContext.js'
 
 const home = () => {
   
