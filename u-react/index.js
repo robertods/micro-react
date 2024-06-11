@@ -1,4 +1,5 @@
-import { html, render } from 'https://unpkg.com/lit-html@2.8.0/lit-html.js?module'
+import { html, render } from 'https://cdn.jsdelivr.net/npm/lit-html@3.1.3/lit-html.min.js'
+import { ifDefined } from 'https://cdn.jsdelivr.net/npm/lit-html@3.1.3/directives/if-defined.js'
 import router, {navigate} from './router.js'
 import useState from './useState.js'
 import useEffect from './useEffect.js'
@@ -20,6 +21,7 @@ const createRoot = (element, RootComponent) => {
 export { 
   createRoot, 
   html, 
+  ifDefined,
   navigate, 
   useState,
   useEffect,
